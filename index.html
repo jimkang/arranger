@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Arranger</title>
+    <link rel="stylesheet" href="app.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body class="centered-col">
+    <section class="form-container centered-col">
+      <div class="frame"></div>
+      <button id="rearrange-button">Rearrange</button>
+    </section>
+
+    <script>
+      var rearrangeButtonEl = document.getElementById('rearrange-button');
+      var frameEl = document.querySelector('.frame');
+
+      rearrangeButtonEl.addEventListener('click', onRearrange);
+
+      function onRearrange() {
+        var possibleIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        const initialPossibleIndexCount = possibleIndexes.length;
+        var chosenIndexes = [];
+        for (var i = 0; i < initialPossibleIndexCount; ++i) {
+          let possibleIndexIndex = ~~(Math.random() * possibleIndexes.length);
+          chosenIndexes.push(possibleIndexes[possibleIndexIndex]);
+          possibleIndexes.splice(possibleIndexIndex, 1);
+        }
+
+        frameEl.innerHTML = '';
+
+        for (var j = 0; j < chosenIndexes.length; ++j) {
+          let imgEl = document.createElement('img');
+          imgEl.src = `media/painting${chosenIndexes[j] + 1}.jpg`;
+          frameEl.appendChild(imgEl);
+        }
+      }
+
+      onRearrange();
+
+    </script>
+  </body>
+</html>
