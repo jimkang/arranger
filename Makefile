@@ -5,13 +5,6 @@ HOMEDIR = $(shell pwd)
 pushall: sync
 	git push origin master
 
-deploy:
-	make build && git commit -a -m"Build" && make pushall
-
-run:
-	wzrd app.js:index.js -- \
-		-d
-
 prettier:
 	prettier --single-quote --write "**/*.html"
 
